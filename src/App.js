@@ -24,7 +24,11 @@ export default class ChangePasswordMain extends Component {
 
 
       <div>
-      <Typography style={{textAlign:'center'}} variant="h2">Change Password </Typography>
+      <Typography
+      style={{textAlign:'center'}}
+      variant="h2"
+      >Change Password
+      </Typography>
 
       <ChangePassword />
       </div>
