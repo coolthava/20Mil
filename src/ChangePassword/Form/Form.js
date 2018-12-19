@@ -20,10 +20,22 @@ class Form extends Component {
         message: 'Password is required.'
       },
       {
+        field: 'password',
+        method:this.passwordLength1,
+        validWhen:true,
+        message:'Minimum character length is 6'
+      },
+      {
         field: 'passwordold',
         method: 'isEmpty',
         validWhen: false,
         message: 'Password is required.'
+      },
+      {
+        field: 'passwordold',
+        method:this.passwordLength2,
+        validWhen:true,
+        message:'Minimum character length is 6'
       },
 
       {
@@ -38,6 +50,7 @@ class Form extends Component {
         validWhen: true,
         message: 'Password and password confirmation do not match.'
       }
+
     ]);
 
     this.state = {
@@ -48,6 +61,27 @@ class Form extends Component {
 
     this.submitted = false;
   }
+
+  passwordLength1=(state)=> {
+    let pass=this.state.password
+    if (pass.length>5){
+      return true
+    }
+    else if (pass.length<6){
+      return false
+    }
+  }
+  passwordLength2=(state)=> {
+    let pass=this.state.passwordold
+    if (pass.length>5){
+      return true
+    }
+    else if (pass.length<6){
+      return false
+    }
+  }
+
+
 
   passwordMatch = (confirmation, state) => (state.password === confirmation)
 
@@ -67,7 +101,7 @@ class Form extends Component {
     this.submitted = true;
 
     if (validation.isValid) {
-      console.log("Success")
+      alert("Success")
       // handle actual form submission here
     }
   }
@@ -82,10 +116,8 @@ class Form extends Component {
     return (
       <form className="demoForm">
 
-
-
         <div className={validation.passwordold.isInvalid && 'has-error'}>
-          <label htmlFor="passwordold"></label>
+
           <TextField type="text" className="form-control"
             name="passwordold"
             variant="outlined"
@@ -98,7 +130,7 @@ class Form extends Component {
         </div>
 
         <div className={validation.password.isInvalid && 'has-error'}>
-          <label htmlFor="password"></label>
+
           <TextField type="text" className="form-control"
             label="New Password"
             name="password"
@@ -112,7 +144,7 @@ class Form extends Component {
         </div>
 
         <div className={validation.password_confirmation.isInvalid && 'has-error'}>
-          <label htmlFor="password_confirmation"></label>
+
           <TextField type="text" className="form-control"
             label="Re-Type New Password"
             name="password_confirmation"

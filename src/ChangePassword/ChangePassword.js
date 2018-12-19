@@ -12,7 +12,7 @@ const styles = {
     marginTop:'50px',
     align: 'center',
     textAlign:'center',
-    backgroundColor:'#f9f7f7'
+    backgroundColor:'#f9f7g9'
 
   },
 
